@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Made in Rwanda</title>
+   
+        }
+ <style>
+        :root {
+            --primary-color: #00f2ff;
+            --secondary-color: #ff00e6;
+            --background-light: #f5f5f5;
+            --text-light: #333333;
+            --background-dark: #121212;
+            --text-dark: #f5f5f5;
+            --accent-color: #00ff80;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            background-color: var(--background-light);
+            color: var(--text-light);
+        }
+
+        body.dark-mode {
+            background-color: var(--background-dark);
+            color: var(--text-dark);
+        }
+
+        /* Loading Screen */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--background-dark);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading-bar-container {
+            width: 300px;
+            height: 5px;
+            background-color: #333;
+            border-radius: 10px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .loading-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+            transition: width 0.1s ease;
+        }
+
+        .loading-text {
+            color: var(--primary-color);
+            margin-top: 10px;
+            font-weight: bold;
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: inherit;
+        }
+
+        body.dark-mode nav {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+            text-shadow: 0 0 5px var(--primary-color);
+        }
+
+        .logo-rwanda {
+            margin-left: 5px;
+            background: linear-gradient(90deg, #00f, #f00, #090);
+            -webkit-background-clip: text;
+            color: transparent;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle, .cart-icon {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: inherit;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .theme-toggle:hover, .cart-icon:hover {
+            background-color: rgba(128, 128, 128, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: url('/api/placeholder/1200/600') center/cover;
+            position: relative;
+            color: white;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.5);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.8);
+        }
+
+        /* Product Section */
+        .products {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            background-color: white;
+        }
+
+        body.dark-mode .product-card {
+            background-color: #1e1e1e;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        body.dark-mode .product-card:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        body.dark-mode .product-price {
+            text-shadow: 0 0 5px var(--primary-color);
+        }
+
+        .add-to-cart {
+            background: none;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: block;
+            width: 100%;
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+
+        /* About Section */
+        .about {
+            padding: 4rem 2rem;
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+
+        body.dark-mode .about {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 242, 255, 0.1), rgba(255, 0, 230, 0.1));
+            text-align: center;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .newsletter-form input {
+            background-color: #2d2d2d;
+            color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        body.dark-mode footer {
+            background-color: #1a1a1a;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .footer-links a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Neon Effect for Dark Mode */
+        body.dark-mode .logo span,
+        body.dark-mode .section-title,
+        body.dark-mode .hero h1 span {
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        body.dark-mode .btn,
+        body.dark-mode .add-to-cart:hover {
+            box-shadow: 0 0 20px var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <h2 style="color: white; text-shadow: 0 0 10px var(--primary-color);">Made in Rwanda</h2>
+        <div class="loading-bar-container">
+            <div class="loading-bar" id="loading-bar"></div>
+        </div>
+        <div class="loading-text" id="loading-text">Loading... 0%</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <span>Made</span> <span class="logo-rwanda">Rwanda</span>
+        </div>
+        <div class="nav-links">
+            <a href="#products">Products</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div style="display: flex; gap: 1rem;">
+            <button class="theme-toggle" id="theme-toggle">🌓</button>
+            <button class="cart-icon">🛒</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Discover <span>Authentic</span> Rwandan Crafts</h1>
+            <p>Handcrafted with pride and tradition. Each product tells a story of Rwanda's rich heritage and skilled artisans.</p>
+            <a href="#products" class="btn">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="products" id="products">
+        <h2 class="section-title">Our Products</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="/api/placeholder/300/200" alt="Rwandan Basket">
+                <div class="product-info">
+                    <h3>Traditional Agaseke Basket</h3>
+                    <p>Handwoven peace basket with intricate designs</p>
+                    <div class="product-price">$45.00</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="/api/placeholder/300/200" alt="Rwandan Coffee">
+                <div class="product-info">
+                    <h3>Premium Rwandan Coffee</h3>
+                    <p>Single-origin coffee from the hills of Rwanda</p>
+                    <div class="product-price">$18.50</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="/api/placeholder/300/200" alt="Imigongo Art">
+                <div class="product-info">
+                    <h3>Imigongo Wall Art</h3>
+                    <p>Traditional geometric designs created with natural materials</p>
+                    <div class="product-price">$65.00</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="/api/placeholder/300/200" alt="Kitenge Fabric">
+                <div class="product-info">
+                    <h3>Kitenge Fabric Clutch</h3>
+                    <p>Vibrant patterns handcrafted into a stylish clutch</p>
+                    <div class="product-price">$28.75</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2 class="section-title">About Made in Rwanda</h2>
+        <div class="about-content">
+            <p>Made in Rwanda is dedicated to showcasing the finest handcrafted products from talented Rwandan artisans. We work directly with local cooperatives to ensure fair trade practices and sustainable production methods.</p>
+            <p>Our mission is to celebrate Rwanda's rich cultural heritage while providing economic opportunities for communities across the country. Each purchase supports local artisans and their families.</p>
+            <a href="#" class="btn" style="margin-top: 2rem;">Learn More</a>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <h2 class="section-title">Join Our Newsletter</h2>
+        <p>Sign up to receive updates on new products and special offers.</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Your email address" required>
+            <button type="submit" class="btn">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <h3>Made in Rwanda</h3>
+        <p>Celebrating Rwandan craftsmanship and culture</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <p style="margin-top: 2rem;">&copy; 2025 Made in Rwanda. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Loading Animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingBar = document.getElementById('loading-bar');
+            const loadingText = document.getElementById('loading-text');
+            const loadingScreen = document.getElementById('loading-screen');
+            
+            let width = 0;
+            const interval = setInterval(frame, 30);
+            
+            function frame() {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loadingScreen.style.opacity = 0;
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                        }, 300);
+                    }, 500);
+                } else {
+                    width++;
+                    loadingBar.style.width = width + '%';
+                    loadingText.textContent = 'Loading... ' + width + '%';
+                }
+            }
+        });
+        
+        // Dark Mode Toggle
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                this.textContent = '☀️';
+            } else {
+                this.textContent = '🌓';
+            }
+        });
+        
+        // Add to Cart Button Effect
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                this.textContent = 'Added ✓';
+                this.style.backgroundColor = 'var(--primary-color)';
+                this.style.color = 'white';
+                
+                setTimeout(() => {
+                    this.textContent = 'Add to Cart';
+                    this.style.backgroundColor = '';
+                    this.style.color = '';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>

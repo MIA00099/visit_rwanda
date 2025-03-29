@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Rwanda</title>
+  <style>
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      color: #fff;
+      background: linear-gradient(to bottom, #1e1e1e, #121212);
+      scroll-behavior: smooth;
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px;
+      background: #202020;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    header h1 {
+      font-size: 3.5em;
+      text-shadow: 0 0 15px cyan, 0 0 25px cyan;
+      animation: glow 1.5s infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px cyan, 0 0 20px cyan;
+      }
+      to {
+        text-shadow: 0 0 20px cyan, 0 0 40px cyan;
+      }
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      background: #121212;
+      padding: 10px 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    nav a {
+      color: cyan;
+      font-size: 1.2em;
+      margin: 0 15px;
+      text-decoration: none;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    nav a:hover {
+      color: #000;
+      transform: scale(1.1);
+      background: cyan;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    section {
+      padding: 30px;
+      margin: 20px auto;
+      max-width: 1200px;
+      background: rgba(30, 30, 30, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 255, 255, 0.5);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px cyan;
+    }
+
+    p {
+      line-height: 1.6;
+      font-size: 1.1em;
+      text-align: justify;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #202020;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 255, 255, 0.7);
+    }
+
+    .card img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #121212;
+      margin-top: 30px;
+    }
+
+    .neon {
+      text-shadow: 0 0 10px cyan, 0 0 20px cyan;
+    }
+
+    .objects-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      gap: 20px;
+    }
+
+    .object {
+      width: 100px;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 255, 255, 0.7);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 10px cyan, 0 0 30px cyan;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .object:hover {
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Explore Rwanda</h1>
+  </header>
+
+  <nav>
+    <a href="#history">History</a>
+    <a href="#places">Places</a>
+    <a href="#culture">Culture</a>
+    <a href="#food">Food</a>
+    <a href="#geography">Geography</a>
+  </nav>
+
+  <section id="history">
+    <h2>History of Rwanda</h2>
+    <p>Rwanda, often referred to as the "Land of a Thousand Hills," boasts a history of resilience. From ancient kingdoms to modern times, it has grown into a beacon of hope and unity.</p>
+  </section>
+
+  <section id="places">
+    <h2>Places to Visit</h2>
+    <div class="container">
+      <div class="card">
+        <img src="https://via.placeholder.com/300" alt="Nyungwe Forest">
+        <h3>Nyungwe Forest</h3>
+        <p>Known for its biodiversity and stunning canopy walks.</p>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/300" alt="Akagera National Park">
+        <h3>Akagera National Park</h3>
+        <p>Famous for its Big Five safari experience.</p>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/300" alt="Volcanoes National Park">
+        <h3>Volcanoes National Park</h3>
+        <p>Home to the iconic mountain gorillas.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="culture">
+    <h2>Culture</h2>
+    <p>Rwandan culture celebrates traditional dances, music, and unique crafts. The community spirit is central to daily life.</p>
+  </section>
+
+  <section id="food">
+    <h2>Food</h2>
+    <p>Popular dishes include Ugali, Isombe, and brochettes. Coffee and tea are among Rwanda's prized exports.</p>
+  </section>
+
+  <section id="geography">
+    <h2>Geography</h2>
+    <p>Rwanda is a landlocked country in East Africa, known for its mountainous terrain, lush green hills, and serene lakes.</p>
+  </section>
+
+  <section id="objects">
+    <h2>Interactive Objects</h2>
+    <div class="objects-container">
+      <div class="object" onclick="alert('Learn more about Nyungwe Forest!')">1</div>
+      <div class="object" onclick="alert('Explore Akagera Park!')">2</div>
+      <div class="object" onclick="alert('Discover Volcanoes Park!')">3</div>
+    </div>
+  </section>
+
+  <footer>
+    <p class="neon">&copy; 2025 Explore Rwanda | Designed for Adventure.</p>
+  </footer>
+</body>
+</html>
